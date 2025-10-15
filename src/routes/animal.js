@@ -10,6 +10,14 @@ router.post("/animals", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 router.get("/animals", (req, res) => {
+  const { edadB } = Number(req.params.edadB);
+  console.log("Edad:"+edadB);
+    animalSchema.find({edad:  {$lte:edadB}})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+router.get("/animalsall", (req, res) => {
+  const { edadBusqueda } = req.params;
     animalSchema.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
